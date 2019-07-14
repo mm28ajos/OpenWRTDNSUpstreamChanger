@@ -44,7 +44,7 @@ nano /root/DNSChanger/mailBody.txt
 
 ## Make DNS change script executable for cron
 ```
-sudo chmod +x /root/ChangeUpstreamDNS.sh
+sudo chmod +x /root/DNSChanger/ChangeUpstreamDNS.sh
 ```
 
 ## Add cronjob
