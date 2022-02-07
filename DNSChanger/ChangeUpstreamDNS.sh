@@ -25,5 +25,5 @@ if [ `uci get dhcp.@dnsmasq[0].resolvfile` != $dns_config_to_set ]; then
   uci set dhcp.@dnsmasq[0].resolvfile=$dns_config_to_set
   uci commit dhcp
   /etc/init.d/dnsmasq restart > /dev/null 2>&1
-  (cat /root/DNSChanger/mailBody.txt && echo "Subject:$HOSTNAME DNS config '$dns_config_to_set' enabled") | ssmtp $MAIL
+  echo "Subject:$HOSTNAME DNS config '$dns_config_to_set' enabled" | /usr/bin/msmtp $MAIL
 fi

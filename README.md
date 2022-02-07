@@ -4,10 +4,10 @@ This script changes the upstream DNS resolver of OpenWRT dnsmasq in case e.g. a 
 The script might be helpful if you deployed a local DNS resolver such as pi-hole. In this case, you will probably enable dnsmasq's option 'strict order' to have all your DNS request be processed by pi-hole. However, by enabling the strict order setting, the availability of your local pi-hole DNS resolver becomes crucial. In case the local pi-hole service is unavailable, DNS queries will time out before being send by OpenWRT to a secondary DNS defined in the config. Thus, your clients will experience DNS queries to be long running. In this scenario the provided script will regularly check if the local pi-hole service is available. If it is not, the script changes OpenWRT's upstream DNS resolver to a defined backup. The script also reverts OpenWRT upstream DNS resolver setting back to your local pi-hole DNS resolver once it becomes available again.
 
 ## Dependencies
-Install 'bind-dig' and 'ssmtp' package.
+Install 'bind-dig' and 'msmtp' package.
 ```
 opkg update
-opkg install bind-dig ssmtp
+opkg install bind-dig msmtp
 ```
 ## Copy files
 Move DNS change script to /root and resolv configurations to /etc.
@@ -31,15 +31,13 @@ Change the resolv configurations to your setting.
 nano /etc/resolvbackup.conf
 nano /etc/resolvdefault.conf
 ```
-Add your mail credentials to ssmtp configuration.
+Add your mail credentials to msmtprc configuration.
 ```
-nano /etc/ssmtp/ssmtp.conf
-nano /etc/smtp/revaliases
+nano /etc/msmtprc
 ```
-Change email recipient and sender in script and mail body.
+Change email recipient and sender in script.
 ```
 nano /root/DNSChanger/ChangeUpstreamDNS.sh
-nano /root/DNSChanger/mailBody.txt
 ```
 
 ## Make DNS change script executable for cron
