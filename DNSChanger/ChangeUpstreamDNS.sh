@@ -14,7 +14,7 @@ IP_DEFAULT_DNS=$(grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}
 result=$(dig +short @$IP_DEFAULT_DNS example.com)
 
 # if default DNS is not availble, mark backup DNS as to be enabled
-if echo $result|grep "connection timed out" - > /dev/null; then
+if echo $result|grep "error" - > /dev/null; then
   dns_config_to_set=$PATH_BACKUP_RESOLV_CONF
 fi
 
